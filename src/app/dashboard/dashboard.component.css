@@ -1,0 +1,42 @@
+/*
+ * Copyright (C) Schweizerische Bundesbahnen SBB, 2019.
+ */
+
+:host >>> .ui-accordion-header {
+  background-color: green;
+  color: black;
+  text-decoration: none;
+}
+
+:host >>> .ui-accordion-header:hover a {
+  background-color: green;
+  color: black;
+  text-decoration: none;
+}
+
+:host >>> .ui-accordion-header a:hover {
+  background-color: green;
+  color: black;
+  text-decoration: none;
+}
+
+:host >>> .ui-accordion-header a {
+  background-color: green;
+  color: black;
+  text-decoration: none;
+}
+
+:host >>> .ui-accordion-header .ui-state-default {
+  background-color: green;
+  color: black;
+}
+
+:host >>> .ui-accordion-header .ui-state-active {
+  background-color: green;
+  color: black;
+}
+
+:host >>> .ui-accordion-content {
+  background-color: palegreen;
+}
+

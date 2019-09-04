@@ -1,0 +1,13 @@
+<assembly>
+    <id>assembly</id>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>dist/webjs-starterkit</directory>
+            <outputDirectory>dist</outputDirectory>
+        </fileSet>
+    </fileSets>
+</assembly>

@@ -1,0 +1,8 @@
+[
+  {
+    "name": "pn.es-ia.pipeline.configure.bitbucket"
+  },
+  {
+    "name": "pn.es-ia.pipeline.update.deployment"
+  }
+]

@@ -1,0 +1,86 @@
+{
+  "name": "cimon-web",
+  "description": "Web frontend for Cimon",
+  "version": "1.0.0",
+  "license": "MIT",
+  "angular-cli": {},
+  "scripts": {
+    "ng": "ng",
+    "start-hmr": "ng serve -o --hmr --proxy-config proxy.conf.json",
+    "start-aot": "ng serve -o --aot --proxy-config proxy.conf.json",
+    "lint": "ng lint",
+    "test": "ng test --watch=false",
+    "test-browserstack": "ng test --progress=false --watch=false --browsers=BsChrome,BsFirefox --code-coverage",
+    "e2e-local": "ng e2e",
+    "e2e-puppeteer": "ng e2e --protractor-config=e2e/protractor.puppeteer.conf.js",
+    "e2e-browserstack": "ng e2e --protractor-config=e2e/protractor.browserstack.conf.js",
+    "build-prod-local": "ng build --prod",
+    "build-prod-ci": "ng build --prod --progress=false"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~7.2.0",
+    "@angular/cdk": "^7.2.1",
+    "@angular/common": "~7.2.0",
+    "@angular/compiler": "~7.2.0",
+    "@angular/core": "~7.2.0",
+    "@angular/forms": "~7.2.0",
+    "@angular/platform-browser": "~7.2.0",
+    "@angular/platform-browser-dynamic": "~7.2.0",
+    "@angular/router": "~7.2.0",
+    "@ngx-translate/core": "^11.0.0",
+    "@ngx-translate/http-loader": "^4.0.0",
+    "bootstrap": "^4.1.3",
+    "core-js": "^2.5.4",
+    "esta-webjs-extensions": "^7.0.0",
+    "font-awesome": "^4.7.0",
+    "primeng": "^7.0.4",
+    "rxjs": "~6.3.3",
+    "zone.js": "~0.8.26"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~0.12.0",
+    "@angular/cli": "~7.2.1",
+    "@angular/compiler-cli": "~7.2.0",
+    "@angular/language-service": "~7.2.0",
+    "@types/jasmine": "~2.8.8",
+    "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
+    "@types/puppeteer": "^1.11.1",
+    "browserstack-local": "^1.3.7",
+    "codelyzer": "~4.5.0",
+    "jasmine-core": "~2.99.1",
+    "jasmine-reporters": "^2.3.2",
+    "jasmine-spec-reporter": "~4.2.1",
+    "jquery": "^3.3.1",
+    "karma": "~3.1.1",
+    "karma-browserstack-launcher": "^1.4.0",
+    "karma-chrome-launcher": "~2.2.0",
+    "karma-coverage-istanbul-reporter": "~2.0.1",
+    "karma-jasmine": "~1.1.2",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-junit-reporter": "^1.2.0",
+    "karma-webdriver-launcher": "^1.0.5",
+    "popper.js": "^1.14.5",
+    "protractor": "~5.4.0",
+    "puppeteer": "^1.11.0",
+    "ts-node": "~7.0.0",
+    "tslint": "~5.11.0",
+    "typescript": "~3.2.2"
+  },
+  "keywords": [
+    "cimon",
+    "angularjs",
+    "webpack"
+  ],
+  "author": {
+    "name": "Marc Walter",
+    "email": "marc.walter@sbb.ch"
+  },
+  "contributors": [
+    {
+      "name": "Urs Beeli",
+      "email": "urs.beeli@sbb.ch"
+    }
+  ]
+}

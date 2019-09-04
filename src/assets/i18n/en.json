@@ -1,0 +1,9 @@
+{
+  "ABOUT": {
+    "SUBTITLE": "This text gets translated by ng2-translate",
+    "TITLE": "The about page",
+    "NOTIFICATIONS": "Create notifications",
+    "GERMAN": "German",
+    "ENGLISH": "English"
+  }
+}

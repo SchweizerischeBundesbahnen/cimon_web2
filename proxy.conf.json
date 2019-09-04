@@ -1,0 +1,8 @@
+{
+  "/ci": {
+    "target": "https://ci.sbb.ch",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {"^/ci" : ""}
+  }
+}
