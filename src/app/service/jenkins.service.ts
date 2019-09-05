@@ -39,19 +39,24 @@ export class JenkinsService {
 
   /** GET: get builds by name from Jenkins */
   getBuilds(): Build[] {
+    // TODO: this is not clean, 'return builds;' below returns immediately, before all builds are loaded
+    // TODO: it would be cleaner to return an Observable<Builds[]> to which our callers could subscribe
     const builds = [];
 
     this.loadSettingsAndJobs().subscribe(() => {
-      for (let i = 0; i < this.jobs.length; i++) {
-        const jobName = this.jobs[i].name;
-        const url = this.settings.jenkinsUrl + '/job/' + jobName + '/lastBuild/api/json';
+      this.jobs.map(job => {
+        const url = this.getUrl(job);
         this.getBuild(url).subscribe(data => {
           builds.push(data);
         });
-      }
+      });
     });
 
     return builds;
+  }
+
+  private getUrl(job: Job): string {
+    return this.settings.jenkinsUrl + '/job/' + job.name + '/lastBuild/api/json';
   }
 
   private getBuild(url: string): Observable<Build> {

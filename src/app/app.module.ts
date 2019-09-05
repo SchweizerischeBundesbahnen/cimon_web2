@@ -8,17 +8,20 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
 import {routing} from './app.routes';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {CoreModule} from "./core/core.module";
+import {CoreModule} from './core/core.module';
+import {DurationPipe} from './pipe/duration.pipe';
 
 import {AccordionModule} from 'primeng/accordion';
+import {SelectButtonModule} from 'primeng/selectbutton';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent],
+  declarations: [AppComponent, DashboardComponent, DurationPipe],
   imports: [
     AccordionModule,
     BrowserAnimationsModule,
     BrowserModule,
     CoreModule,
+    SelectButtonModule,
     routing
   ],
   bootstrap: [AppComponent]

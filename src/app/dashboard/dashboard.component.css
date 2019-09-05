@@ -2,41 +2,185 @@
  * Copyright (C) Schweizerische Bundesbahnen SBB, 2019.
  */
 
-:host >>> .ui-accordion-header {
-  background-color: green;
-  color: black;
-  text-decoration: none;
+/* TODO: it would be nice to use an SCSS file instead of a CSS file so the selectors would not need to be repeated several times, but sadly, I did not manage to get it to work */
+
+/* --------------------------------------------------------------
+ * Non accordion stuff
+ * --------------------------------------------------------------
+ */
+div.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-:host >>> .ui-accordion-header:hover a {
-  background-color: green;
-  color: black;
-  text-decoration: none;
+div.header > h1 {
+  flex: none;
 }
 
-:host >>> .ui-accordion-header a:hover {
-  background-color: green;
-  color: black;
-  text-decoration: none;
+div.header > p-selectButton {
+  flex: none;
+}
+
+:host >>> .ui-button ui-state-active {
+  background: royalblue;
+}
+
+/* --------------------------------------------------------------
+ * COMMON
+ * --------------------------------------------------------------
+ */
+:host >>> .ui-state-active {
+  border-color: black;
+}
+
+:host >>> .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover {
+  border-color: black;
 }
 
 :host >>> .ui-accordion-header a {
-  background-color: green;
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
-:host >>> .ui-accordion-header .ui-state-default {
-  background-color: green;
-  color: black;
-}
-
-:host >>> .ui-accordion-header .ui-state-active {
-  background-color: green;
-  color: black;
-}
-
 :host >>> .ui-accordion-content {
+  padding-bottom: 1em;
+  margin-bottom: 2em;
+  border: 1px solid #e5e5e5;
+  border-top: none;
+}
+
+:host >>> .ui-accordion-content a {
+  text-decoration: underline;
+}
+
+:host >>> .ui-accordion-content:hover {
+/ / font-style: italic;
+  border: 1px solid black;
+  border-top: none;
+}
+
+/* --------------------------------------------------------------
+ * SUCCESS
+ * --------------------------------------------------------------
+ */
+
+:host >>> .SUCCESS > .ui-accordion-header {
+  background-color: green;
+}
+
+:host >>> .SUCCESS > .ui-accordion-header:hover a {
+  background-color: darkgreen;
+}
+
+:host >>> .SUCCESS > .ui-accordion-header a:hover {
+  background-color: darkgreen;
+}
+
+:host >>> .SUCCESS .ui-accordion-content {
   background-color: palegreen;
 }
 
+/* --------------------------------------------------------------
+ * UNSTABLE
+ * --------------------------------------------------------------
+ */
+
+:host >>> .UNSTABLE > .ui-accordion-header {
+  background-color: orange;
+}
+
+:host >>> .UNSTABLE > .ui-accordion-header:hover a {
+  background-color: darkorange;
+}
+
+:host >>> .UNSTABLE > .ui-accordion-header a:hover {
+  background-color: darkorange;
+}
+
+:host >>> .UNSTABLE .ui-accordion-content {
+  background-color: #ffbb5f;
+}
+
+/* --------------------------------------------------------------
+ * FAILURE
+ * --------------------------------------------------------------
+ */
+
+:host >>> .FAILURE > .ui-accordion-header {
+  background-color: red;
+}
+
+:host >>> .FAILURE > .ui-accordion-header:hover a {
+  background-color: darkred;
+}
+
+:host >>> .FAILURE > .ui-accordion-header a:hover {
+  background-color: darkred;
+}
+
+:host >>> .FAILURE .ui-accordion-content {
+  background-color: #ff837b;
+}
+
+/* --------------------------------------------------------------
+ * ABORTED
+ * --------------------------------------------------------------
+ */
+
+:host >>> .ABORTED > .ui-accordion-header {
+  background-color: dimgrey;
+}
+
+:host >>> .ABORTED > .ui-accordion-header:hover a {
+  background-color: #525252;
+}
+
+:host >>> .ABORTED > .ui-accordion-header a:hover {
+  background-color: #525252;
+}
+
+:host >>> .ABORTED .ui-accordion-content {
+  background-color: lightgray;
+}
+
+/* --------------------------------------------------------------
+ * BUILDING
+ * --------------------------------------------------------------
+ */
+
+:host >>> .BUILDING > .ui-accordion-header {
+  background-color: blue;
+}
+
+:host >>> .BUILDING > .ui-accordion-header:hover a {
+  background-color: darkblue;
+}
+
+:host >>> .BUILDING > .ui-accordion-header a:hover {
+  background-color: darkblue;
+}
+
+:host >>> .BUILDING .ui-accordion-content {
+  background-color: lightblue;
+}
+
+/* --------------------------------------------------------------
+ * UNKNOWN
+ * --------------------------------------------------------------
+ */
+:host >>> .UNKNOWN > .ui-accordion-header {
+  background-color: #353535;
+}
+
+:host >>> .UNKNOWN > .ui-accordion-header:hover a {
+  background-color: black;
+}
+
+:host >>> .UNKNOWN > .ui-accordion-header a:hover {
+  background-color: black;
+}
+
+:host >>> .UNKNOWN .ui-accordion-content {
+  background-color: #cbcbcb;
+}
