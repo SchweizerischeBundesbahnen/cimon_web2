@@ -90,4 +90,19 @@ export class DashboardComponent implements OnInit {
     }
     return `${prefix}_${result}`;
   }
+
+  getNumberOfSuccessfulBuilds(): number {
+    let successfulCounter = 0;
+    for (const build of this.builds) {
+      if (build.result === 'SUCCESS') {
+        successfulCounter++;
+      }
+    }
+    return successfulCounter;
+  }
+
+  getNumberOfBuilds(): number {
+    return this.builds.length;
+  }
+
 }

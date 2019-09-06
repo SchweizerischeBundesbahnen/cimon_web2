@@ -1,12 +1,14 @@
 <div class="jumbotron">
   <div class="header">
     <h1>Builds</h1>
-    <p-selectButton [options]="sortOptions"
-                    (onChange)="sortOrderChanged($event.value)">
-    </p-selectButton>
+    <p-selectButton [options]="sortOptions" (onChange)="sortOrderChanged($event.value)"></p-selectButton>
   </div>
+  <div *ngIf="!jenkinsService.loading">
+    <h3>{{getNumberOfSuccessfulBuilds()}} out of {{getNumberOfBuilds()}} builds successful</h3>
+  </div>
+  <p-progressSpinner *ngIf="jenkinsService.loading"></p-progressSpinner>
 
-  <p-accordion [multiple]="true">
+  <p-accordion [multiple]="true" *ngIf="!jenkinsService.loading">
     <p-accordionTab *ngFor="let build of builds"
                     header="{{build.fullDisplayName}} - {{build.result}}"
                     [ngClass]="build.building ? 'BUILDING' : build.result ? build.result : 'UNKNOWN'">

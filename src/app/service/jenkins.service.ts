@@ -19,35 +19,37 @@ export class JenkinsService {
 
   settings: Settings;
   jobs: Job[] = [];
+  loading: boolean;
 
   constructor(private http: HttpClient,
               private settingsService: SettingsService,
               private jobsService: JobsService) {
   }
 
-  loadSettingsAndJobs(): Observable<void> {
-    // Daten holen und wenn vorhanden, diese setzen
-    return forkJoin(
-      this.settingsService.getSettings(),
-      this.jobsService.getJobs()
-    ).pipe(map((result: any[]) => {
-      const [settings, jobs] = result;
-      this.settings = settings;
-      this.jobs = jobs;
-    }));
-  }
-
   /** GET: get builds by name from Jenkins */
   getBuilds(): Build[] {
-    // TODO: this is not clean, 'return builds;' below returns immediately, before all builds are loaded
-    // TODO: it would be cleaner to return an Observable<Builds[]> to which our callers could subscribe
+    this.loading = true;
     const builds = [];
+    let counter = 0;
 
     this.loadSettingsAndJobs().subscribe(() => {
-      this.jobs.map(job => {
+      this.jobs.map((job: Job) => {
         const url = this.getUrl(job);
         this.getBuild(url).subscribe(data => {
           builds.push(data);
+          counter++;
+          if (this.jobs.length === counter) {
+            this.loading = false;
+          }
+        }, (error: HttpErrorResponse) => {
+          // TODO what do we do with builds which do not exist anymore?
+          if (error.status === 404) {
+            console.log('Build not found for job: ' + job.name);
+          }
+          counter++;
+          if (this.jobs.length === counter) {
+            this.loading = false;
+          }
         });
       });
     });
@@ -63,6 +65,18 @@ export class JenkinsService {
     return this.http.get<Build>(url).pipe(
       catchError(JenkinsService.handleError)
     );
+  }
+
+  private loadSettingsAndJobs(): Observable<void> {
+    // Daten holen und wenn vorhanden, diese setzen
+    return forkJoin(
+      this.settingsService.getSettings(),
+      this.jobsService.getJobs()
+    ).pipe(map((result: any[]) => {
+      const [settings, jobs] = result;
+      this.settings = settings;
+      this.jobs = jobs;
+    }));
   }
 
   /**

@@ -12,6 +12,7 @@ import {CoreModule} from './core/core.module';
 import {DurationPipe} from './pipe/duration.pipe';
 
 import {AccordionModule} from 'primeng/accordion';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {SelectButtonModule} from 'primeng/selectbutton';
 
 @NgModule({
@@ -21,6 +22,7 @@ import {SelectButtonModule} from 'primeng/selectbutton';
     BrowserAnimationsModule,
     BrowserModule,
     CoreModule,
+    ProgressSpinnerModule,
     SelectButtonModule,
     routing
   ],

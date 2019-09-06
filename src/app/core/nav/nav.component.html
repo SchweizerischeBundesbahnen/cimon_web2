@@ -23,21 +23,6 @@
         </a>
       </li>
     </ul>
-    <ul class="navbar-nav">
-      <li *ngIf="!authService.authenticated()" class="nav-item">
-        <a class="nav-link" (click)="authService.login()">
-          <i class="fa fa-sign-in fa-lg user-icon" aria-hidden="true">&nbsp;</i>
-          <span>Login</span>
-        </a>
-      </li>
-      <li *ngIf="authService.authenticated()" class="nav-item">
-        <a class="nav-link" (click)="authService.logout()">
-          <i class="fa fa-sign-out fa-lg user-icon" aria-hidden="true"></i>Hallo {{ (userInfo | async)?.username }}
-          -
-          <span>Logout</span>
-        </a>
-      </li>
-    </ul>
     <a class="navbar-brand" href="#">
       <svg class="company-logo" viewBox="0 0 187 21" xmlns="http://www.w3.org/2000/svg" itemprop="logo">
         <title>SBB Logo</title>

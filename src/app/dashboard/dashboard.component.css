@@ -22,7 +22,7 @@ div.header > p-selectButton {
   flex: none;
 }
 
-:host >>> .ui-button ui-state-active {
+:host >>> .ui-button .ui-state-active {
   background: royalblue;
 }
 
@@ -31,22 +31,23 @@ div.header > p-selectButton {
  * --------------------------------------------------------------
  */
 :host >>> .ui-state-active {
-  border-color: black;
+  border-style: none;
 }
 
 :host >>> .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover {
-  border-color: black;
+  border-style: none;
 }
 
 :host >>> .ui-accordion-header a {
   color: white;
   text-decoration: none;
+  border-style: none;
 }
 
 :host >>> .ui-accordion-content {
   padding-bottom: 1em;
-  margin-bottom: 2em;
-  border: 1px solid #e5e5e5;
+  margin-bottom: 1em;
+  border-style: none;
   border-top: none;
 }
 
@@ -55,8 +56,7 @@ div.header > p-selectButton {
 }
 
 :host >>> .ui-accordion-content:hover {
-/ / font-style: italic;
-  border: 1px solid black;
+  border-style: none;
   border-top: none;
 }
 
@@ -67,14 +67,17 @@ div.header > p-selectButton {
 
 :host >>> .SUCCESS > .ui-accordion-header {
   background-color: green;
+  border-style: none;
 }
 
 :host >>> .SUCCESS > .ui-accordion-header:hover a {
   background-color: darkgreen;
+  border-style: none;
 }
 
 :host >>> .SUCCESS > .ui-accordion-header a:hover {
   background-color: darkgreen;
+  border-style: none;
 }
 
 :host >>> .SUCCESS .ui-accordion-content {
@@ -88,14 +91,17 @@ div.header > p-selectButton {
 
 :host >>> .UNSTABLE > .ui-accordion-header {
   background-color: orange;
+  border-style: none;
 }
 
 :host >>> .UNSTABLE > .ui-accordion-header:hover a {
   background-color: darkorange;
+  border-style: none;
 }
 
 :host >>> .UNSTABLE > .ui-accordion-header a:hover {
   background-color: darkorange;
+  border-style: none;
 }
 
 :host >>> .UNSTABLE .ui-accordion-content {
@@ -109,14 +115,17 @@ div.header > p-selectButton {
 
 :host >>> .FAILURE > .ui-accordion-header {
   background-color: red;
+  border-style: none;
 }
 
 :host >>> .FAILURE > .ui-accordion-header:hover a {
   background-color: darkred;
+  border-style: none;
 }
 
 :host >>> .FAILURE > .ui-accordion-header a:hover {
   background-color: darkred;
+  border-style: none;
 }
 
 :host >>> .FAILURE .ui-accordion-content {
@@ -130,18 +139,22 @@ div.header > p-selectButton {
 
 :host >>> .ABORTED > .ui-accordion-header {
   background-color: dimgrey;
+  border-style: none;
 }
 
 :host >>> .ABORTED > .ui-accordion-header:hover a {
   background-color: #525252;
+  border-style: none;
 }
 
 :host >>> .ABORTED > .ui-accordion-header a:hover {
   background-color: #525252;
+  border-style: none;
 }
 
 :host >>> .ABORTED .ui-accordion-content {
   background-color: lightgray;
+  border-style: none;
 }
 
 /* --------------------------------------------------------------
