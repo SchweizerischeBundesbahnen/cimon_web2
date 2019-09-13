@@ -55,10 +55,6 @@ div.header > p-selectButton {
   text-decoration: underline;
 }
 
-:host >>> .ui-accordion-content:hover {
-  border-style: none;
-  border-top: none;
-}
 
 /* --------------------------------------------------------------
  * SUCCESS

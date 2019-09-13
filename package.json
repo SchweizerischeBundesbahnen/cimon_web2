@@ -35,6 +35,7 @@
     "esta-webjs-extensions": "^7.0.0",
     "font-awesome": "^4.7.0",
     "primeng": "^8.0.2",
+    "primeicons": "^1.0.0",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
   },

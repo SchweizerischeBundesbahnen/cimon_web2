@@ -28,7 +28,10 @@
             ],
             "styles": [
               "./node_modules/font-awesome/scss/font-awesome.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/primeicons/primeicons.css",
+              "./node_modules/primeng/resources/themes/nova-light/theme.css",
+              "./node_modules/primeng/resources/primeng.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.slim.js",

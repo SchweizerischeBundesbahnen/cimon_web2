@@ -12,6 +12,7 @@ import {CoreModule} from './core/core.module';
 import {DurationPipe} from './pipe/duration.pipe';
 
 import {AccordionModule} from 'primeng/accordion';
+import {FormsModule} from '@angular/forms';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {SelectButtonModule} from 'primeng/selectbutton';
 
@@ -22,6 +23,7 @@ import {SelectButtonModule} from 'primeng/selectbutton';
     BrowserAnimationsModule,
     BrowserModule,
     CoreModule,
+    FormsModule,
     ProgressSpinnerModule,
     SelectButtonModule,
     routing
