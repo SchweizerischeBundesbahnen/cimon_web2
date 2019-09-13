@@ -1,7 +1,7 @@
 <div class="jumbotron">
   <div class="header">
     <h1>Builds</h1>
-    <p-selectButton [options]="sortOptions" (onChange)="sortOrderChanged($event.value)"></p-selectButton>
+    <p-selectButton [options]="sortOptions" [(ngModel)]="selectedSortOption" (onChange)="changeSortOrder($event.value)"></p-selectButton>
   </div>
   <div *ngIf="!jenkinsService.loading">
     <h3>{{getNumberOfSuccessfulBuilds()}} out of {{getNumberOfBuilds()}} builds successful</h3>

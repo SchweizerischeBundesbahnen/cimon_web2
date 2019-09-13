@@ -16,30 +16,28 @@ export class DashboardComponent implements OnInit {
 
   builds: Build[] = [];
   sortOptions: SelectItem[];
-  sortByResult = true;
+  selectedSortOption: string = 'result';
 
   constructor(private jenkinsService: JenkinsService) {
     this.sortOptions = [
-      {label: 'Sort by Name', value: false},
-      {label: 'Sort by Result and Name', value: true}
+      {label: 'Sort by Name', value: 'name'},
+      {label: 'Sort by Result and Name', value: 'result'}
     ];
   }
 
   ngOnInit(): void {
     this.builds = this.jenkinsService.getBuilds();
+    // TODO will be executed before loading builds has finished -> no sorting
     this.sortBuilds();
   }
 
-  sortOrderChanged(sortByResult: boolean): void {
-    if (sortByResult !== this.sortByResult) {
-      this.sortByResult = sortByResult;
-      console.log('sortByResult', this.sortByResult);
-      this.sortBuilds();
-    }
+  changeSortOrder(sortType: string): void {
+    this.sortBuilds();
   }
 
   sortBuilds() {
-    this.builds = this.builds.sort((b1, b2) => this.sortByResult ? this.compareByResultAndName(b1, b2) : this.compareByName(b1, b2));
+    console.log(this.selectedSortOption);
+    this.builds = this.builds.sort((b1, b2) => this.selectedSortOption === 'result' ? this.compareByResultAndName(b1, b2) : this.compareByName(b1, b2));
   }
 
   compareByResultAndName(b1: Build, b2: Build) {
