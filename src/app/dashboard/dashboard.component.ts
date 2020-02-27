@@ -36,7 +36,6 @@ export class DashboardComponent implements OnInit {
   }
 
   sortBuilds() {
-    console.log(this.selectedSortOption);
     this.builds = this.builds.sort((b1, b2) => this.selectedSortOption === 'result' ? this.compareByResultAndName(b1, b2) : this.compareByName(b1, b2));
   }
 

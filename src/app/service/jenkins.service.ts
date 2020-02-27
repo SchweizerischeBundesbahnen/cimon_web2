@@ -88,7 +88,7 @@ export class JenkinsService {
       console.error('An error occurred calling Jenkins REST endpoint: ' + error.error.message);
     } else {
       // the backend returned an unsuccessful response code.
-      // the response body may contain clues as to what went wrong,
+      // the response body may contain clues about what went wrong
       console.error(`Calling REST endpoint returned code ${error.status}, body was: ${error.error}.`);
     }
     // return an observable with a user-facing error message

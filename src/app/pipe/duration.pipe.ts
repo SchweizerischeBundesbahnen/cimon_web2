@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) Schweizerische Bundesbahnen SBB, 2019.
+ */
+
 import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
