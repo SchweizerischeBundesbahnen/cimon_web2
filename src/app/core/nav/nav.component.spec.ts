@@ -47,11 +47,9 @@ describe('NavbarComponent', () => {
         fixture.detectChanges();
     });
 
-    it(`should declare navItems for home, about and theme`, () => {
+    it(`should declare navItems for dashboard`, () => {
         const expectedNavItems = [
-            {displayName: 'Home', routerLink: 'home'},
-            {displayName: 'About', routerLink: 'about'},
-            {displayName: 'Theme', routerLink: 'theme'}
+            {displayName: 'Dashboard', routerLink: 'dashboard'}
         ];
         expect(expectedNavItems).toEqual(component.navItems);
     });
