@@ -61,18 +61,24 @@ div.header > p-selectButton {
  * --------------------------------------------------------------
  */
 
-:host >>> .SUCCESS > .ui-accordion-header {
+
+:host >>> .SUCCESS .ui-accordion-header:not(.ui-state-disabled).ui-state-active:hover a {
   background-color: green;
   border-style: none;
 }
 
-:host >>> .SUCCESS > .ui-accordion-header:hover a {
-  background-color: darkgreen;
+:host >>> .SUCCESS .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
+  background-color: green;
   border-style: none;
 }
 
-:host >>> .SUCCESS > .ui-accordion-header a:hover {
-  background-color: darkgreen;
+:host >>> .SUCCESS .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled) a {
+  background-color: green;
+  border-style: none;
+}
+
+:host >>> .SUCCESS .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover a {
+  background-color: green;
   border-style: none;
 }
 
@@ -85,18 +91,23 @@ div.header > p-selectButton {
  * --------------------------------------------------------------
  */
 
-:host >>> .UNSTABLE > .ui-accordion-header {
+:host >>> .UNSTABLE .ui-accordion-header:not(.ui-state-disabled).ui-state-active:hover a {
   background-color: orange;
   border-style: none;
 }
 
-:host >>> .UNSTABLE > .ui-accordion-header:hover a {
-  background-color: darkorange;
+:host >>> .UNSTABLE .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
+  background-color: orange;
   border-style: none;
 }
 
-:host >>> .UNSTABLE > .ui-accordion-header a:hover {
-  background-color: darkorange;
+:host >>> .UNSTABLE .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled) a {
+  background-color: orange;
+  border-style: none;
+}
+
+:host >>> .UNSTABLE .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover a {
+  background-color: orange;
   border-style: none;
 }
 
@@ -109,18 +120,23 @@ div.header > p-selectButton {
  * --------------------------------------------------------------
  */
 
-:host >>> .FAILURE > .ui-accordion-header {
+:host >>> .FAILURE .ui-accordion-header:not(.ui-state-disabled).ui-state-active:hover a {
   background-color: red;
   border-style: none;
 }
 
-:host >>> .FAILURE > .ui-accordion-header:hover a {
-  background-color: darkred;
+:host >>> .FAILURE .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
+  background-color: red;
   border-style: none;
 }
 
-:host >>> .FAILURE > .ui-accordion-header a:hover {
-  background-color: darkred;
+:host >>> .FAILURE .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled) a {
+  background-color: red;
+  border-style: none;
+}
+
+:host >>> .FAILURE .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover a {
+  background-color: red;
   border-style: none;
 }
 
@@ -133,18 +149,23 @@ div.header > p-selectButton {
  * --------------------------------------------------------------
  */
 
-:host >>> .ABORTED > .ui-accordion-header {
+:host >>> .ABORTED .ui-accordion-header:not(.ui-state-disabled).ui-state-active:hover a {
   background-color: dimgrey;
   border-style: none;
 }
 
-:host >>> .ABORTED > .ui-accordion-header:hover a {
-  background-color: #525252;
+:host >>> .ABORTED .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
+  background-color: dimgrey;
   border-style: none;
 }
 
-:host >>> .ABORTED > .ui-accordion-header a:hover {
-  background-color: #525252;
+:host >>> .ABORTED .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled) a {
+  background-color: dimgrey;
+  border-style: none;
+}
+
+:host >>> .ABORTED .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover a {
+  background-color: dimgrey;
   border-style: none;
 }
 
@@ -158,16 +179,24 @@ div.header > p-selectButton {
  * --------------------------------------------------------------
  */
 
-:host >>> .BUILDING > .ui-accordion-header {
+:host >>> .BUILDING .ui-accordion-header:not(.ui-state-disabled).ui-state-active:hover a {
   background-color: blue;
+  border-style: none;
 }
 
-:host >>> .BUILDING > .ui-accordion-header:hover a {
-  background-color: darkblue;
+:host >>> .BUILDING .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
+  background-color: blue;
+  border-style: none;
 }
 
-:host >>> .BUILDING > .ui-accordion-header a:hover {
-  background-color: darkblue;
+:host >>> .BUILDING .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled) a {
+  background-color: blue;
+  border-style: none;
+}
+
+:host >>> .BUILDING .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover a {
+  background-color: blue;
+  border-style: none;
 }
 
 :host >>> .BUILDING .ui-accordion-content {
@@ -178,16 +207,25 @@ div.header > p-selectButton {
  * UNKNOWN
  * --------------------------------------------------------------
  */
-:host >>> .UNKNOWN > .ui-accordion-header {
+
+:host >>> .UNKNOWN .ui-accordion-header:not(.ui-state-disabled).ui-state-active:hover a {
   background-color: #353535;
+  border-style: none;
 }
 
-:host >>> .UNKNOWN > .ui-accordion-header:hover a {
-  background-color: black;
+:host >>> .UNKNOWN .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
+  background-color: #353535;
+  border-style: none;
 }
 
-:host >>> .UNKNOWN > .ui-accordion-header a:hover {
-  background-color: black;
+:host >>> .UNKNOWN .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled) a {
+  background-color: #353535;
+  border-style: none;
+}
+
+:host >>> .UNKNOWN .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover a {
+  background-color: #353535;
+  border-style: none;
 }
 
 :host >>> .UNKNOWN .ui-accordion-content {
