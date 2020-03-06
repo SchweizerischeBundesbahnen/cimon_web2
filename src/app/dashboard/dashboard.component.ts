@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   sortOptions: SelectItem[];
   selectedSortOption: string = 'result';
 
-  constructor(private jenkinsService: JenkinsService) {
+  constructor(public jenkinsService: JenkinsService) {
     this.sortOptions = [
       {label: 'Sort by Name', value: 'name'},
       {label: 'Sort by Result and Name', value: 'result'}
