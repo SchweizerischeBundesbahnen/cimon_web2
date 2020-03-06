@@ -12,13 +12,11 @@
     <p-accordionTab *ngFor="let build of builds"
                     header="{{build.fullDisplayName}} - {{build.result}}"
                     [ngClass]="build.building ? 'BUILDING' : build.result ? build.result : 'UNKNOWN'">
-      <div>Date: {{build.timestamp | date : 'long'}}</div>
-      <div>Duration: {{(build.duration) | duration}}</div>
-      <div>Result: {{build.result}}<span *ngIf="build.building"> (currently building)</span></div>
-      <div>URL: <a [attr.href]="build.url" target="_blank">{{build.url}}</a></div>
+      <div>{{build.timestamp | date : 'dd.MM.yyyy HH:mm:ss'}}</div>
+      <div>{{(build.duration) | duration}}</div>
+      <div><a [attr.href]="build.url" target="_blank">{{build.url}}</a></div>
       <div *ngIf="build.builtOn">Built on: {{build.builtOn}}</div>
-      <div *ngIf="build.actions.length && build.actions[0].causes && build.actions[0].causes.length">Build cause: {{build.actions[0]?.causes[0]?.shortDescription}}</div>
-      <!-- <div>{{build | json}}</div> -->
+      <div *ngIf="build.actions.length && build.actions[0].causes && build.actions[0].causes.length">{{build.actions[0]?.causes[0]?.shortDescription}}</div>
     </p-accordionTab>
   </p-accordion>
 </div>
