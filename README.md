@@ -1,6 +1,9 @@
 # Cimon Web2
 Copyright (C) Schweizerische Bundesbahnen SBB 2019-2020, Apache Licence 2.0.
 
+
+![CI](https://github.com/SchweizerischeBundesbahnen/cimon_web2/workflows/Continuous%20Integration/badge.svg)
+
 Angular Frontend for the Cimon build monitor.
 
 ## Status
