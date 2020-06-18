@@ -17,7 +17,7 @@
     "e2e-browserstack": "ng e2e --protractor-config=e2e/protractor.browserstack.conf.js",
     "build-prod-local": "ng build --prod",
     "build-prod-ci": "ng build --prod --progress=false",
-    "build-prod-and-zip": "cd dist/webjs-starterkit && zip -r cimon-web.zip *"
+    "create-zip": "cd dist/webjs-starterkit && zip -r cimon-web.zip *"
   },
   "private": true,
   "dependencies": {
