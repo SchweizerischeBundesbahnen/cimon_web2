@@ -27,9 +27,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: sudo apt-get update
     - run: sudo apt-get install -y libgbm-dev
-    - run: npm ci
     - run: npm install
     - run: npm install -g @angular/cli
+    - run: npm ci
     - run: ng build --prod
-    - run: npm run build
     - run: npm test
+    - run: ls
