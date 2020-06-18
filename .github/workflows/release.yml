@@ -1,0 +1,20 @@
+# This workflow will do a release
+# For more information see: https://github.com/marketplace/actions/create-release
+
+name: Release
+
+on:
+  push:
+    tags:
+      - 'feature/**'
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "dist/webjs-starterkit/*"
+          token: ${{ secrets.GITHUB_TOKEN }}
