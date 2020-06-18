@@ -14,8 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - run: npm build-prod-and-zip
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "dist/webjs-starterkit/*"
+          artifacts: "dist/webjs-starterkit/cimon-web.zip"
           tag: "RELEASE"
           token: ${{ secrets.GITHUB_TOKEN }}
