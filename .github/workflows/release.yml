@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm run build --prod
+      - run: npm build --prod
       - run: ls
       - uses: ncipollo/release-action@v1
         with:
