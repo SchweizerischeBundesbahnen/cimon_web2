@@ -33,5 +33,5 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "dist/webjs-starterkit/cimon-web.zip"
-          tag: $NOW
+          tag: ${{ env.NOW }}
           token: ${{ secrets.GITHUB_TOKEN }}

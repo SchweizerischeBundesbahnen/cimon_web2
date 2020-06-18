@@ -32,4 +32,3 @@ jobs:
     - run: npm ci
     - run: ng build --prod
     - run: npm test
-    - run: ls
