@@ -22,6 +22,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - run: sudo apt-get update
+      - run: sudo apt-get install -y libgbm-dev
+      - run: npm ci
       - run: npm build --prod
       - run: ls
       - uses: ncipollo/release-action@v1
