@@ -28,10 +28,10 @@ jobs:
       - run: npm install -g @angular/cli
       - run: npm ci
       - run: ng build --prod
-      - run: ls
+      - run: npm run create-zip
       - run: echo "::set-env name=NOW::$(date +'%Y-%m-%dT%H:%M:%S')"
-#      - uses: ncipollo/release-action@v1
-#        with:
-#          artifacts: "dist/webjs-starterkit/cimon-web.zip"
-#          tag: $NOW
-#          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "dist/webjs-starterkit/cimon-web.zip"
+          tag: $NOW
+          token: ${{ secrets.GITHUB_TOKEN }}
