@@ -17,4 +17,5 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "dist/webjs-starterkit/*"
+          tag: "RELEASE"
           token: ${{ secrets.GITHUB_TOKEN }}
