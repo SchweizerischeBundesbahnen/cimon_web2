@@ -31,7 +31,7 @@ jobs:
       - run: npm run create-zip
       - name: set NOW
         run: |
-          echo "::set-env name=NOW::$(date +'%Y-%m-%dT%H:%M:%S')"
+          echo "::set-env name=NOW::v$(date +'%Y%m%d.%H%M%S')"
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "dist/webjs-starterkit/cimon-web.zip"
