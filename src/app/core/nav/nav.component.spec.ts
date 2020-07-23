@@ -9,12 +9,6 @@ describe('NavbarComponent', () => {
     let component: NavComponent;
     let fixture: ComponentFixture<NavComponent>;
 
-    class MockAuthService {
-        public authenticated() {
-            return true;
-        }
-    }
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [RouterModule.forRoot([], {useHash: true})],
@@ -28,10 +22,11 @@ describe('NavbarComponent', () => {
         fixture.detectChanges();
     });
 
-    it(`should declare navItems for dashboard`, () => {
+    it('should declare navItems for dashboard', () => {
         const expectedNavItems = [
-            {displayName: 'Dashboard', routerLink: 'dashboard'}
+            {displayName: 'CIMON Dashboard', routerLink: '/'}
         ];
         expect(expectedNavItems).toEqual(component.navItems);
     });
+
 });
