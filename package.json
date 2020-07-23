@@ -1,6 +1,6 @@
 {
   "name": "cimon-web",
-  "description": "Web frontend for Cimon",
+  "description": "Web frontend for CIMON build monitor",
   "version": "1.0.0",
   "license": "MIT",
   "angular-cli": {},
