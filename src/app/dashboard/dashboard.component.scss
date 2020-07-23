@@ -1,0 +1,240 @@
+/*
+ * Copyright (C) Schweizerische Bundesbahnen SBB, 2019.
+ */
+
+:host {
+  .ui-button .ui-state-active {
+    background: royalblue;
+  }
+
+  > .jumbotron {
+    > div.header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      > h1 {
+        flex: none;
+      }
+
+      > p-selectButton {
+        flex: none;
+      }
+    }
+
+  }
+
+  ::ng-deep {
+    /* --------------------------------------------------------------
+     * COMMON
+     * --------------------------------------------------------------
+     */
+    .ui-state-active {
+      border-style: none;
+    }
+
+    .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover {
+      border-style: none;
+    }
+
+    .ui-accordion .ui-accordion-header a {
+      color: white;
+      text-decoration: none;
+      font-weight: normal;
+      border-style: none;
+    }
+
+    .ui-accordion:hover .ui-accordion-header:hover a:hover {
+      color: lightgray;
+    }
+
+
+    .ui-accordion-content {
+      padding-bottom: 1em;
+      margin-bottom: 1em;
+      border-style: none;
+      border-top: none;
+    }
+
+    .ui-accordion-content a {
+      text-decoration: underline;
+    }
+
+
+    /* --------------------------------------------------------------
+     * SUCCESS
+     * --------------------------------------------------------------
+     */
+
+
+    .SUCCESS .ui-accordion-header:not(.ui-state-disabled).ui-state-active:hover a {
+      background-color: green;
+      border-style: none;
+    }
+
+    .SUCCESS .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
+      background-color: green;
+      border-style: none;
+    }
+
+    .SUCCESS .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled) a {
+      background-color: green;
+      border-style: none;
+    }
+
+    .SUCCESS .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover a {
+      background-color: green;
+      border-style: none;
+    }
+
+    .SUCCESS .ui-accordion-content {
+      background-color: palegreen;
+    }
+
+    /* --------------------------------------------------------------
+     * UNSTABLE
+     * --------------------------------------------------------------
+     */
+
+    .UNSTABLE .ui-accordion-header:not(.ui-state-disabled).ui-state-active:hover a {
+      background-color: orange;
+      border-style: none;
+    }
+
+    .UNSTABLE .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
+      background-color: orange;
+      border-style: none;
+    }
+
+    .UNSTABLE .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled) a {
+      background-color: orange;
+      border-style: none;
+    }
+
+    .UNSTABLE .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover a {
+      background-color: orange;
+      border-style: none;
+    }
+
+    .UNSTABLE .ui-accordion-content {
+      background-color: #ffbb5f;
+    }
+
+    /* --------------------------------------------------------------
+     * FAILURE
+     * --------------------------------------------------------------
+     */
+
+    .FAILURE .ui-accordion-header:not(.ui-state-disabled).ui-state-active:hover a {
+      background-color: red;
+      border-style: none;
+    }
+
+    .FAILURE .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
+      background-color: red;
+      border-style: none;
+    }
+
+    .FAILURE .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled) a {
+      background-color: red;
+      border-style: none;
+    }
+
+    .FAILURE .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover a {
+      background-color: red;
+      border-style: none;
+    }
+
+    .FAILURE .ui-accordion-content {
+      background-color: #ff837b;
+    }
+
+    /* --------------------------------------------------------------
+     * ABORTED
+     * --------------------------------------------------------------
+     */
+
+    .ABORTED .ui-accordion-header:not(.ui-state-disabled).ui-state-active:hover a {
+      background-color: dimgrey;
+      border-style: none;
+    }
+
+    .ABORTED .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
+      background-color: dimgrey;
+      border-style: none;
+    }
+
+    .ABORTED .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled) a {
+      background-color: dimgrey;
+      border-style: none;
+    }
+
+    .ABORTED .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover a {
+      background-color: dimgrey;
+      border-style: none;
+    }
+
+    .ABORTED .ui-accordion-content {
+      background-color: lightgray;
+      border-style: none;
+    }
+
+    /* --------------------------------------------------------------
+     * BUILDING
+     * --------------------------------------------------------------
+     */
+
+    .BUILDING .ui-accordion-header:not(.ui-state-disabled).ui-state-active:hover a {
+      background-color: blue;
+      border-style: none;
+    }
+
+    .BUILDING .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
+      background-color: blue;
+      border-style: none;
+    }
+
+    .BUILDING .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled) a {
+      background-color: blue;
+      border-style: none;
+    }
+
+    .BUILDING .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover a {
+      background-color: blue;
+      border-style: none;
+    }
+
+    .BUILDING .ui-accordion-content {
+      background-color: lightblue;
+    }
+
+    /* --------------------------------------------------------------
+     * UNKNOWN
+     * --------------------------------------------------------------
+     */
+
+    .UNKNOWN .ui-accordion-header:not(.ui-state-disabled).ui-state-active:hover a {
+      background-color: dimgray;
+      border-style: none;
+    }
+
+    .UNKNOWN .ui-accordion-header:not(.ui-state-disabled).ui-state-active a {
+      background-color: dimgray;
+      border-style: none;
+    }
+
+    .UNKNOWN .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled) a {
+      background-color: dimgray;
+      border-style: none;
+    }
+
+    .UNKNOWN .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover a {
+      background-color: dimgray;
+      border-style: none;
+    }
+
+    .UNKNOWN .ui-accordion-content {
+      background-color: #cbcbcb;
+    }
+  }
+}
