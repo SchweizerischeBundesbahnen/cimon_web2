@@ -4,7 +4,7 @@
 
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {forkJoin, Observable, throwError} from 'rxjs';
+import {forkJoin, Observable, of} from 'rxjs';
 import {catchError, flatMap, map} from 'rxjs/operators';
 import {SettingsService} from './settings.service';
 import {JobsService} from './jobs.service';
@@ -29,8 +29,7 @@ export class JenkinsService {
       flatMap(
         jobs => {
           const pendingBuilds: Observable<Build>[] = jobs.map(job => {
-            const url = this.getUrl(job);
-            return this.getBuild(url);
+            return this.getBuild(job);
           });
 
           return forkJoin(pendingBuilds).pipe();
@@ -43,9 +42,10 @@ export class JenkinsService {
     return '/ci/job/' + job + '/lastBuild/api/json';
   }
 
-  private getBuild(url: string): Observable<Build> {
+  private getBuild(job: string): Observable<Build> {
+    const url = this.getUrl(job);
     return this.http.get<Build>(url).pipe(
-      catchError(JenkinsService.handleError)
+      catchError(error => this.handleError(error, job))
     );
   }
 
@@ -65,7 +65,7 @@ export class JenkinsService {
    * Handle Http operation that failed. Throw the error to let the component handle it.
    * @param error the Http error response
    */
-  private static handleError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse, job: string): Observable<Build> {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred calling Jenkins REST endpoint: ' + error.error.message);
     } else {
@@ -74,6 +74,9 @@ export class JenkinsService {
       console.error(`Calling REST endpoint returned code ${error.status}, body was: ${error.error}.`);
     }
     // return an observable with a user-facing error message
-    return throwError(error);
+    return of({
+      result: 'UNKNOWN',
+      fullDisplayName: job
+    } as Build);
   }
 }
