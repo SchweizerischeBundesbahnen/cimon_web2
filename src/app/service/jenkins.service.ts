@@ -9,7 +9,6 @@ import {catchError, map} from 'rxjs/operators';
 import {SettingsService} from './settings.service';
 import {JobsService} from './jobs.service';
 import {Settings} from '../model/settings';
-import {Job} from '../model/job';
 import {Build} from '../model/build';
 
 @Injectable({
@@ -18,7 +17,7 @@ import {Build} from '../model/build';
 export class JenkinsService {
 
   settings: Settings;
-  jobs: Job[] = [];
+  jobs: string[] = [];
   loading: boolean;
 
   constructor(private http: HttpClient,
@@ -33,7 +32,7 @@ export class JenkinsService {
     let counter = 0;
 
     this.loadSettingsAndJobs().subscribe(() => {
-      this.jobs.map((job: Job) => {
+      this.jobs.map((job: string) => {
         const url = this.getUrl(job);
         this.getBuild(url).subscribe(data => {
           builds.push(data);
@@ -44,7 +43,7 @@ export class JenkinsService {
         }, (error: HttpErrorResponse) => {
           // TODO what do we do with builds which do not exist anymore?
           if (error.status === 404) {
-            console.log('Build not found for job: ' + job.name);
+            console.log('Build not found for job: ' + job);
           }
           counter++;
           if (this.jobs.length === counter) {
@@ -57,8 +56,9 @@ export class JenkinsService {
     return builds;
   }
 
-  private getUrl(job: Job): string {
-    return this.settings.jenkinsUrl + '/job/' + job.name + '/lastBuild/api/json';
+  private getUrl(job: string): string {
+    //return this.settings.jenkinsUrl + '/job/' + job + '/lastBuild/api/json';
+    return '/ci/job/' + job + '/lastBuild/api/json';
   }
 
   private getBuild(url: string): Observable<Build> {
@@ -69,10 +69,10 @@ export class JenkinsService {
 
   private loadSettingsAndJobs(): Observable<void> {
     // Daten holen und wenn vorhanden, diese setzen
-    return forkJoin(
+    return forkJoin([
       this.settingsService.getSettings(),
       this.jobsService.getJobs()
-    ).pipe(map((result: any[]) => {
+    ]).pipe(map((result: any[]) => {
       const [settings, jobs] = result;
       this.settings = settings;
       this.jobs = jobs;

@@ -6,7 +6,8 @@
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
-    "start-hmr": "ng serve -o --hmr --proxy-config proxy.conf.json",
+    "start-hmr-from-server": "ng serve -o --hmr --proxy-config proxy.conf.json",
+    "start-hmr-from-file": "ng serve -o -c local --hmr --proxy-config proxy-direct.conf.json",
     "start-aot": "ng serve -o --aot --proxy-config proxy.conf.json",
     "lint": "ng lint",
     "test local": "ng test --browsers=Chrome",
@@ -73,8 +74,7 @@
   },
   "keywords": [
     "cimon",
-    "angularjs",
-    "webpack"
+    "angular"
   ],
   "author": {
     "name": "Marc Walter",
