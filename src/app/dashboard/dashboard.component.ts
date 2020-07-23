@@ -14,9 +14,10 @@ import {SelectItem} from 'primeng/api';
 })
 export class DashboardComponent implements OnInit {
 
+  loading = false;
   builds: Build[] = [];
   sortOptions: SelectItem[];
-  selectedSortOption: string = 'result';
+  selectedSortOption = 'result';
 
   constructor(public jenkinsService: JenkinsService) {
     this.sortOptions = [
@@ -26,9 +27,23 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.builds = this.jenkinsService.getBuilds();
-    // TODO will be executed before loading builds has finished -> no sorting
-    this.sortBuilds();
+    this.loadBuilds();
+  }
+
+  loadBuilds() {
+    this.loading = true;
+    this.jenkinsService.getBuilds().subscribe(builds => {
+      builds.forEach((build: Build) => {
+        if (build.building) {
+          build.result = 'BUILDING';
+        } else if (!build.result) {
+          build.result = 'UNKNOWN';
+        }
+      });
+      this.builds = builds;
+      this.sortBuilds();
+      this.loading = false;
+    });
   }
 
   changeSortOrder(sortType: string): void {

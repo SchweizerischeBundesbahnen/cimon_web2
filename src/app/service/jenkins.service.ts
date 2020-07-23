@@ -5,7 +5,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {forkJoin, Observable, throwError} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import {catchError, flatMap, map} from 'rxjs/operators';
 import {SettingsService} from './settings.service';
 import {JobsService} from './jobs.service';
 import {Settings} from '../model/settings';
@@ -17,8 +17,6 @@ import {Build} from '../model/build';
 export class JenkinsService {
 
   settings: Settings;
-  jobs: string[] = [];
-  loading: boolean;
 
   constructor(private http: HttpClient,
               private settingsService: SettingsService,
@@ -26,34 +24,19 @@ export class JenkinsService {
   }
 
   /** GET: get builds by name from Jenkins */
-  getBuilds(): Build[] {
-    this.loading = true;
-    const builds = [];
-    let counter = 0;
+  getBuilds(): Observable<Build[]> {
+    return this.loadSettingsAndJobs().pipe(
+      flatMap(
+        jobs => {
+          const pendingBuilds: Observable<Build>[] = jobs.map(job => {
+            const url = this.getUrl(job);
+            return this.getBuild(url);
+          });
 
-    this.loadSettingsAndJobs().subscribe(() => {
-      this.jobs.map((job: string) => {
-        const url = this.getUrl(job);
-        this.getBuild(url).subscribe(data => {
-          builds.push(data);
-          counter++;
-          if (this.jobs.length === counter) {
-            this.loading = false;
-          }
-        }, (error: HttpErrorResponse) => {
-          // TODO what do we do with builds which do not exist anymore?
-          if (error.status === 404) {
-            console.log('Build not found for job: ' + job);
-          }
-          counter++;
-          if (this.jobs.length === counter) {
-            this.loading = false;
-          }
-        });
-      });
-    });
-
-    return builds;
+          return forkJoin(pendingBuilds).pipe();
+        }
+      )
+    );
   }
 
   private getUrl(job: string): string {
@@ -66,7 +49,7 @@ export class JenkinsService {
     );
   }
 
-  private loadSettingsAndJobs(): Observable<void> {
+  private loadSettingsAndJobs(): Observable<string[]> {
     // Daten holen und wenn vorhanden, diese setzen
     return forkJoin([
       this.settingsService.getSettings(),
@@ -74,7 +57,7 @@ export class JenkinsService {
     ]).pipe(map((result: any[]) => {
       const [settings, jobs] = result;
       this.settings = settings;
-      this.jobs = jobs;
+      return jobs;
     }));
   }
 

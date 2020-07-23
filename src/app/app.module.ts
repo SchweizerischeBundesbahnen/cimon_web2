@@ -15,6 +15,7 @@ import {AccordionModule} from 'primeng/accordion';
 import {FormsModule} from '@angular/forms';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {SelectButtonModule} from 'primeng/selectbutton';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent, DurationPipe],
@@ -22,6 +23,7 @@ import {SelectButtonModule} from 'primeng/selectbutton';
     AccordionModule,
     BrowserAnimationsModule,
     BrowserModule,
+    ButtonModule,
     CoreModule,
     FormsModule,
     ProgressSpinnerModule,
