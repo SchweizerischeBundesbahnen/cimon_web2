@@ -4,13 +4,16 @@
     <p-button (click)="loadBuilds()" [label]="'Refresh'" class="ui-button ui-button-info"></p-button>
     <p-selectButton [options]="sortOptions" [(ngModel)]="selectedSortOption" (onChange)="changeSortOrder($event.value)"></p-selectButton>
   </div>
-  <div *ngIf="!loading">
-    <h3>{{getNumberOfSuccessfulBuilds()}} out of {{getNumberOfBuilds()}} builds successful</h3>
+  <div *ngIf="!loading" class="filter">
+    <h3>{{getNumberOfSuccessfulBuilds()}} out of {{getNumberOfBuilds()}} builds successful (filtered to {{filteredBuilds.length}} builds)</h3>
+    <form [formGroup]="form">
+      <input pInputText id="name" formControlName="filter" placeholder="Name Filter"/>
+    </form>
   </div>
   <p-progressSpinner *ngIf="loading"></p-progressSpinner>
 
   <p-accordion [multiple]="true" *ngIf="!loading">
-    <p-accordionTab *ngFor="let build of builds"
+    <p-accordionTab *ngFor="let build of filteredBuilds"
                     header="{{build.fullDisplayName}} - {{build.result}}"
                     [ngClass]="build.building ? 'BUILDING' : build.result ? build.result : 'UNKNOWN'">
       <div>{{build.timestamp | date : 'dd.MM.yyyy HH:mm:ss'}}</div>

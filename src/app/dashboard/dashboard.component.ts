@@ -2,24 +2,30 @@
  * Copyright (C) Schweizerische Bundesbahnen SBB, 2019.
  */
 
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {JenkinsService} from '../service/jenkins.service';
 import {Build} from '../model/build';
 import {SelectItem} from 'primeng/api';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Subscription} from 'rxjs';
+import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
-
+export class DashboardComponent implements OnInit, OnDestroy {
   loading = false;
   builds: Build[] = [];
+  filteredBuilds: Build[] = [];
   sortOptions: SelectItem[];
   selectedSortOption = 'result';
+  form: FormGroup;
+  subscriptions: Subscription[] = [];
 
-  constructor(public jenkinsService: JenkinsService) {
+  constructor(public jenkinsService: JenkinsService,
+              private fb: FormBuilder) {
     this.sortOptions = [
       {label: 'Sort by Name', value: 'name'},
       {label: 'Sort by Result and Name', value: 'result'}
@@ -27,7 +33,22 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.buildForms();
     this.loadBuilds();
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  private buildForms() {
+    this.form = this.fb.group({
+      filter: ''
+    });
+    this.subscriptions.push(this.form.controls.filter.valueChanges.pipe(
+      distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
+      debounceTime(500)
+    ).subscribe(() => this.applyFilter()));
   }
 
   loadBuilds() {
@@ -42,16 +63,31 @@ export class DashboardComponent implements OnInit {
       });
       this.builds = builds;
       this.sortBuilds();
+      this.applyFilter();
       this.loading = false;
     });
   }
 
   changeSortOrder(sortType: string): void {
     this.sortBuilds();
+    this.applyFilter();
+  }
+
+  applyFilter() {
+    if (this.form.controls.filter.value && this.form.controls.filter.value.length) {
+      this.filteredBuilds = this.builds.filter(
+        build => build.fullDisplayName.toLowerCase().includes(this.form.controls.filter.value.toLowerCase())
+      );
+    } else {
+      this.filteredBuilds = this.builds;
+    }
   }
 
   sortBuilds() {
-    this.builds = this.builds.sort((b1, b2) => this.selectedSortOption === 'result' ? this.compareByResultAndName(b1, b2) : this.compareByName(b1, b2));
+    this.builds.sort((b1, b2) =>
+      this.selectedSortOption === 'result' ?
+        this.compareByResultAndName(b1, b2) :
+        this.compareByName(b1, b2));
   }
 
   compareByResultAndName(b1: Build, b2: Build) {

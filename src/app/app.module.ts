@@ -12,10 +12,11 @@ import {CoreModule} from './core/core.module';
 import {DurationPipe} from './pipe/duration.pipe';
 
 import {AccordionModule} from 'primeng/accordion';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {ButtonModule} from 'primeng/button';
+import {InputTextModule} from 'primeng/inputtext';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent, DurationPipe],
@@ -26,6 +27,8 @@ import {ButtonModule} from 'primeng/button';
     ButtonModule,
     CoreModule,
     FormsModule,
+    InputTextModule,
+    ReactiveFormsModule,
     ProgressSpinnerModule,
     SelectButtonModule,
     routing
