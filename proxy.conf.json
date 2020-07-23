@@ -1,14 +1,18 @@
 {
   "/ci": {
-    "target": "https://localhost:8080",
+    "target": "http://localhost:8080",
     "secure": false,
     "changeOrigin": true,
-    "pathRewrite": {"^/ci" : ""}
+    "pathRewrite": {
+      "^/ci": ""
+    }
   },
   "/jobs": {
-    "target": "http://localhost:8080/jobs",
+    "target": "http://localhost:8080",
     "secure": false,
     "changeOrigin": true,
-    "pathRewrite": {"^/jobs" : "/jobs"}
+    "pathRewrite": {
+      "^/jobs": "/jobs"
+    }
   }
 }
