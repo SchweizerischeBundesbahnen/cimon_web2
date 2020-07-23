@@ -57,7 +57,6 @@ export class JenkinsService {
   }
 
   private getUrl(job: string): string {
-    //return this.settings.jenkinsUrl + '/job/' + job + '/lastBuild/api/json';
     return '/ci/job/' + job + '/lastBuild/api/json';
   }
 

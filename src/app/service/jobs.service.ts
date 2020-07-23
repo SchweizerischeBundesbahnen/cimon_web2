@@ -5,17 +5,14 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Observable, throwError} from "rxjs";
-import {catchError, map, shareReplay} from "rxjs/operators";
-import {environment} from "../../environments/environment";
+import {catchError} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class JobsService {
 
-  //readonly JOBS_URL = environment.jobsUrl;
   readonly JOBS_URL = "/jobs";
-  readonly JOBS_FILE = '/assets/jobs.json';
 
   private jobs$: Observable<string[]>;
 
@@ -25,25 +22,13 @@ export class JobsService {
   getJobs(): Observable<string[]> {
     if (!this.jobs$) {
       this.jobs$ = this.fetchJobs();
-      // this.loadJobsFromFile();
     }
     return this.jobs$;
   }
 
   private fetchJobs(): Observable<string[]> {
-    console.log('Fetching jobs from', this.JOBS_URL);
     return this.http.get<string[]>(this.JOBS_URL).pipe(
-      map(result => {
-        console.log('job list loaded', result);
-        return result;
-      }),
       catchError(JobsService.handleError)
-    );
-  }
-
-  private loadJobsFromFile(): void {
-    this.jobs$ = this.http.get<string[]>(this.JOBS_URL).pipe(
-      shareReplay()
     );
   }
 

@@ -15,7 +15,7 @@ interface NavItem {
 export class NavComponent {
 
     public navItems: Array<NavItem> = [
-        {displayName: 'Dashboard', routerLink: 'dashboard'}
+        {displayName: 'CIMON Dashboard', routerLink: 'dashboard'}
     ];
 
     public isCollapsed = true;

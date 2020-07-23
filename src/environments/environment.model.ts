@@ -3,6 +3,5 @@
  */
 
 export interface Environment {
-    jobsUrl: string;
     production: boolean;
 }
