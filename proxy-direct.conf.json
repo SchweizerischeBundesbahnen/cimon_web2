@@ -1,0 +1,14 @@
+{
+  "/ci": {
+    "target": "https://ci.sbb.ch",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {"^/ci" : ""}
+  },
+  "/jobs": {
+    "target": "http://localhost:4200/assets/jobs.json",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {"^/jobs" : ""}
+  }
+}

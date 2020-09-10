@@ -5,5 +5,4 @@
 export interface Settings {
   timeout: number;
   showDetails: boolean;
-  jenkinsUrl: string;
 }

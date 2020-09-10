@@ -1,8 +1,18 @@
 {
   "/ci": {
-    "target": "https://ci.sbb.ch",
+    "target": "http://localhost:8080",
     "secure": false,
     "changeOrigin": true,
-    "pathRewrite": {"^/ci" : ""}
+    "pathRewrite": {
+      "^/ci": ""
+    }
+  },
+  "/jobs": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/jobs": "/jobs"
+    }
   }
 }

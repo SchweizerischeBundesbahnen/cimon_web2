@@ -1,5 +1,4 @@
 {
   "timeout": 10000,
-  "showDetails": true,
-  "jenkinsUrl": "/ci"
+  "showDetails": true
 }
