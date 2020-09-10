@@ -12,9 +12,6 @@ import {RouterModule} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 import {AppComponent} from './app.component';
 import {CoreModule} from './core/core.module';
-import {Observable, of} from 'rxjs';
-import {AuthService} from 'esta-webjs-extensions';
-import {KeycloakProfile} from 'keycloak-js';
 
 describe('AppComponent', () => {
     beforeEach(() => {
@@ -24,26 +21,6 @@ describe('AppComponent', () => {
             }
 
             public use() {
-            }
-        }
-
-        class MockAuthService {
-            public authenticated() {
-                return true;
-            }
-
-            public getUserInfo(): Observable<KeycloakProfile> {
-                return of({
-                    id: 'user',
-                    username: 'test',
-                    email: 'test@xx.com',
-                    firstName: 'Test',
-                    lastName: 'User',
-                    enabled: true,
-                    emailVerified: true,
-                    totp: true,
-                    createdTimestamp: 1
-                });
             }
         }
 
@@ -57,8 +34,7 @@ describe('AppComponent', () => {
                 AppComponent
             ],
             providers: [
-                {provide: TranslateService, useClass: TranslationMock},
-                {provide: AuthService, useClass: MockAuthService}
+                {provide: TranslateService, useClass: TranslationMock}
             ]
         });
         TestBed.compileComponents();

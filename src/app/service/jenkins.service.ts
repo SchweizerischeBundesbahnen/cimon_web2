@@ -4,12 +4,11 @@
 
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {forkJoin, Observable, throwError} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import {forkJoin, Observable, of} from 'rxjs';
+import {catchError, flatMap, map} from 'rxjs/operators';
 import {SettingsService} from './settings.service';
 import {JobsService} from './jobs.service';
 import {Settings} from '../model/settings';
-import {Job} from '../model/job';
 import {Build} from '../model/build';
 
 @Injectable({
@@ -18,8 +17,6 @@ import {Build} from '../model/build';
 export class JenkinsService {
 
   settings: Settings;
-  jobs: Job[] = [];
-  loading: boolean;
 
   constructor(private http: HttpClient,
               private settingsService: SettingsService,
@@ -27,55 +24,40 @@ export class JenkinsService {
   }
 
   /** GET: get builds by name from Jenkins */
-  getBuilds(): Build[] {
-    this.loading = true;
-    const builds = [];
-    let counter = 0;
+  getBuilds(): Observable<Build[]> {
+    return this.loadSettingsAndJobs().pipe(
+      flatMap(
+        jobs => {
+          const pendingBuilds: Observable<Build>[] = jobs.map(job => {
+            return this.getBuild(job);
+          });
 
-    this.loadSettingsAndJobs().subscribe(() => {
-      this.jobs.map((job: Job) => {
-        const url = this.getUrl(job);
-        this.getBuild(url).subscribe(data => {
-          builds.push(data);
-          counter++;
-          if (this.jobs.length === counter) {
-            this.loading = false;
-          }
-        }, (error: HttpErrorResponse) => {
-          // TODO what do we do with builds which do not exist anymore?
-          if (error.status === 404) {
-            console.log('Build not found for job: ' + job.name);
-          }
-          counter++;
-          if (this.jobs.length === counter) {
-            this.loading = false;
-          }
-        });
-      });
-    });
-
-    return builds;
-  }
-
-  private getUrl(job: Job): string {
-    return this.settings.jenkinsUrl + '/job/' + job.name + '/lastBuild/api/json';
-  }
-
-  private getBuild(url: string): Observable<Build> {
-    return this.http.get<Build>(url).pipe(
-      catchError(JenkinsService.handleError)
+          return forkJoin(pendingBuilds).pipe();
+        }
+      )
     );
   }
 
-  private loadSettingsAndJobs(): Observable<void> {
+  private getUrl(job: string): string {
+    return '/ci/job/' + job + '/lastBuild/api/json';
+  }
+
+  private getBuild(job: string): Observable<Build> {
+    const url = this.getUrl(job);
+    return this.http.get<Build>(url).pipe(
+      catchError(error => this.handleError(error, job))
+    );
+  }
+
+  private loadSettingsAndJobs(): Observable<string[]> {
     // Daten holen und wenn vorhanden, diese setzen
-    return forkJoin(
+    return forkJoin([
       this.settingsService.getSettings(),
       this.jobsService.getJobs()
-    ).pipe(map((result: any[]) => {
+    ]).pipe(map((result: any[]) => {
       const [settings, jobs] = result;
       this.settings = settings;
-      this.jobs = jobs;
+      return jobs;
     }));
   }
 
@@ -83,7 +65,7 @@ export class JenkinsService {
    * Handle Http operation that failed. Throw the error to let the component handle it.
    * @param error the Http error response
    */
-  private static handleError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse, job: string): Observable<Build> {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred calling Jenkins REST endpoint: ' + error.error.message);
     } else {
@@ -92,6 +74,9 @@ export class JenkinsService {
       console.error(`Calling REST endpoint returned code ${error.status}, body was: ${error.error}.`);
     }
     // return an observable with a user-facing error message
-    return throwError(error);
+    return of({
+      result: 'UNKNOWN',
+      fullDisplayName: job
+    } as Build);
   }
 }

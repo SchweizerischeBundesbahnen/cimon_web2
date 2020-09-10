@@ -1,0 +1,16 @@
+nav {
+  display: flex;
+  flex-direction: row;
+
+  > .cimon {
+    flex: auto;
+  }
+
+  > .navbar-brand {
+    flex: none;
+
+    > svg {
+      width: 200px;
+    }
+  }
+}
