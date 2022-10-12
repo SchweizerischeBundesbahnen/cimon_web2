@@ -53,7 +53,7 @@
     "browserstack-local": "^1.4.5",
     "codelyzer": "^5.2.2",
     "jasmine-core": "~2.99.1",
-    "jasmine-reporters": "^2.3.2",
+    "jasmine-reporters": "^2.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "jquery": "^3.5.1",
     "karma": "~3.1.1",
